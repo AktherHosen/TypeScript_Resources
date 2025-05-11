@@ -758,3 +758,66 @@ Access modifiers are a key concept in Object-Oriented Programming, allowing you 
   console.log(newBalance);
 
 ```
+
+## Getter and setter
+
+Take control of how your class properties are accessed and modified! You'll learn how to define getters and setters in TypeScript and explore their benefits
+
+### Getter and setter
+
+```bash
+  class BankAccount {
+    public readonly id: number;
+    public name: string;
+    protected _balance: number;
+
+    constructor(id: number, name: string, balance: number) {
+      this.id = id;
+      this.name = name;
+      this._balance = balance;
+    }
+
+    get Balance() {
+      return this._balance;
+    }
+
+    set depositMoney(amount: number) {
+      this._balance += amount;
+    }
+  }
+
+  const AktherHosen = new BankAccount(101, "Mr. Akther", 50);
+  AktherHosen.depositMoney = 100;
+  const myBalance = AktherHosen.Balance;
+  console.log(myBalance);
+
+```
+
+## Static
+
+Static properties and methods belong to the class itself, not to individual instances. We'll explore the concept of static members in TypeScript, showing you how to declare and use them.
+
+### Static Example
+
+```bash
+  // when i want to make in single source we have to remove
+  this.
+  class Counter {
+    static count: number = 0;
+
+    static increment() {
+      return (Counter.count += 1);
+    }
+    static decrement() {
+      return (Counter.count -= 1);
+    }
+  }
+
+  //   const instance1 = new Counter();
+  console.log(Counter.increment());
+  //   const instance2 = new Counter();
+  console.log(Counter.increment());
+  //   const instance3 = new Counter();
+  console.log(Counter.decrement());
+
+```
