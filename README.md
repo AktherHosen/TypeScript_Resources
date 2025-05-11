@@ -2,17 +2,18 @@
 
 This guide provides an overview of the key concepts in TypeScript, along with practical examples and detailed explanations. Whether you are a beginner or someone looking to refresh your knowledge, this guide covers the essentials of TypeScript, including data types, functions, destructuring, operators, and advanced types.
 
-
 ---
 
 ## 🛠 TypeScript Project Setup
 
 ### 1. Initialize TypeScript
+
 ```bash
 tsc --init
 ```
 
 ### 2. Update `tsconfig.json`
+
 ```json
 {
   "compilerOptions": {
@@ -27,18 +28,18 @@ tsc --init
 ```
 
 ### 3. Install ts-node-dev
+
 ```bash
 npm install -g ts-node-dev
 ```
 
 ### 4. Run the project
+
 ```bash
 ts-node-dev --respawn --transpile-only src/index.ts
 ```
 
 ---
-
-
 
 ## Basic Data Types
 
@@ -99,7 +100,10 @@ const user = {
 };
 
 // Destructuring with renaming variables
-const { contact: phoneNumber, name: { middleName: midName } } = user;
+const {
+  contact: phoneNumber,
+  name: { middleName: midName },
+} = user;
 console.log(phoneNumber); // "023123123123"
 console.log(midName); // "Bakth"
 ```
@@ -110,12 +114,12 @@ console.log(midName); // "Bakth"
 const myFriends = ["John", "Alice", "Bob", "Charlie"];
 
 // Destructure first and third elements, skipping second
-const [friend1, , friend3] = myFriends; 
+const [friend1, , friend3] = myFriends;
 console.log(friend1); // "John"
 console.log(friend3); // "Bob"
 
 // Using rest operator to collect remaining elements
-const [firstFriend, secondFriend, ...remainingFriends] = myFriends; 
+const [firstFriend, secondFriend, ...remainingFriends] = myFriends;
 console.log(firstFriend); // "John"
 console.log(remainingFriends); // ["Bob", "Charlie"]
 ```
@@ -134,8 +138,8 @@ function add(num1: number, num2: number = 20): number {
   return num1 + num2; // returns the sum of two numbers
 }
 
-const result1 = add(10);  // num2 defaults to 20 → result1 = 30
-const result2 = add(5, 15);  // result2 = 20
+const result1 = add(10); // num2 defaults to 20 → result1 = 30
+const result2 = add(5, 15); // result2 = 20
 ```
 
 ### 2. Arrow Function
@@ -174,7 +178,9 @@ You can also use arrow functions in array methods like `map()` to modify each el
 const numbers: number[] = [10, 20, 30, 40, 50];
 
 // Using map() to square each number in the array
-const squaredNumbers: number[] = numbers.map((elem: number): number => elem * elem);
+const squaredNumbers: number[] = numbers.map(
+  (elem: number): number => elem * elem
+);
 
 // Result: [100, 400, 900, 1600, 2500]
 ```
@@ -239,7 +245,7 @@ const handleCriticalError = (message: string): never => {
 
 ---
 
-##  Object Types
+## Object Types
 
 In TypeScript, you can use `type` aliases to define complex object structures.
 
@@ -268,6 +274,7 @@ const user2: TUser = {
 ```
 
 ### Key Points:
+
 - `readonly`: Property cannot be reassigned after initialization.
 - `?`: Property is optional.
 
@@ -299,7 +306,7 @@ const mentorGroup2 = {
 };
 
 const allMentors = { ...mentorGroup1, ...mentorGroup2 };
-console.log(allMentors); 
+console.log(allMentors);
 // Output: { typescript: 'John', redux: 'Anna', docker: 'Sara' }
 ```
 
@@ -313,7 +320,7 @@ const greetFriends = (...friends: string[]) => {
   friends.forEach((friend) => console.log(`Hi, ${friend}!`)); // Greets each friend
 };
 
-greetFriends("Alice", "Bob", "Charlie"); 
+greetFriends("Alice", "Bob", "Charlie");
 // Output:
 // Hi, Alice!
 // Hi, Bob!
@@ -363,9 +370,7 @@ const loggedInUser = {
 const userPermanentAddress =
   loggedInUser?.address?.permanentAddress ?? "No permanent address available"; // Safe access to optional property
 
-console.log
-
-(userPermanentAddress); // Output: "No permanent address available"
+console.log(userPermanentAddress); // Output: "No permanent address available"
 ```
 
 ---
@@ -418,8 +423,14 @@ type TUser = {
 An intersection type allows combining multiple types into a single type. It represents an object that contains properties from multiple types.
 
 ```ts
-type TFrontendDeveloper = { frontendSkills: string[]; frontendDesignation: "Frontend Developer" };
-type TBackendDeveloper = { backendSkills: string[]; backendDesignation: "Backend Developer" };
+type TFrontendDeveloper = {
+  frontendSkills: string[];
+  frontendDesignation: "Frontend Developer";
+};
+type TBackendDeveloper = {
+  backendSkills: string[];
+  backendDesignation: "Backend Developer";
+};
 
 type TFullstackDeveloper = TFrontendDeveloper & TBackendDeveloper; // Fullstack Developer includes both frontend and backend skills
 ```
@@ -457,3 +468,49 @@ This guide demonstrates TypeScript concepts like:
 ```
 
 ---
+
+## Class and object
+
+Classes serve as blueprints for creating objects, which are instances that encapsulate both state and behavior. You'll learn how to define classes with properties and methods, create objects from them, and understand why this pattern is crucial for building scalable and maintainable applications.
+
+## Installation
+
+Install my-project with npm
+
+```bash
+{
+  class Animal {
+    // public name: string; //public is modifier
+    // public species: string;
+    // public sound: string;
+
+    we can see i have to define twice property type.
+    we can use parameter property to reduce the repeatations.
+    so we need to add public/private parameter properties
+    before constructor property
+
+    constructor(
+      public name: string,
+      public species: string,
+      public sound: string
+    ) {
+      this.name = name;
+      this.species = species;
+      this.sound = sound;
+    }
+
+    method (I have to use normal function because in arrow
+    function this keyword is not working)
+
+    makeSound() {
+      console.log(`The ${this.name} says ${this.sound}`);
+    }
+  }
+
+  const dog = new Animal("German Shepard", "Dog", "Barking");
+  const cat = new Animal("German Cat", "Cat", "Meaw");
+  dog.makeSound();
+
+}
+
+```
