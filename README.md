@@ -635,3 +635,126 @@ When working with dynamic types, it's crucial to ensure that you're dealing with
 }
 
 ```
+
+## Type guard using instance of
+
+Building on your knowledge of type guards, this video introduces instanceof, a powerful operator that allows you to check whether an object is an instance of a specific class. This is particularly useful in OOP, where objects might belong to different classes in an inheritance hierarchy.
+
+### Instance of
+
+```bash
+  class Animal {
+    name: string;
+    species: string;
+
+    constructor(name: string, species: string) {
+      this.name = name;
+      this.species = species;
+    }
+    makeSound() {
+      console.log("I am making sound!");
+    }
+  }
+
+  class Dog extends Animal {
+    constructor(name: string, species: string) {
+      super(name, species);
+    }
+    makeBurk() {
+      console.log("I am barking");
+    }
+  }
+
+  class Cat extends Animal {
+    constructor(name: string, species: string) {
+      super(name, species);
+    }
+    makeMeaw() {
+      console.log("I am Meawing");
+    }
+  }
+
+  // we can handle type of animal using an function
+
+  const isDog = (animal: Animal): animal is Dog => {
+    return animal instanceof Dog;
+  };
+  const isCat = (animal: Animal): animal is Cat => {
+    return animal instanceof Cat;
+  };
+
+  const getAnimal = (animal: Animal) => {
+    if (isDog(animal)) {
+      animal.makeBurk();
+    } else if (isCat(animal)) {
+      animal.makeMeaw();
+    } else {
+      animal.makeSound();
+    }
+  };
+
+  const dog = new Dog("Dog1", "Dog");
+  const cat = new Cat("Cat1", "Cat");
+
+  getAnimal(dog);
+  getAnimal(cat);
+
+```
+
+## Access Modifiers
+
+Access modifiers are a key concept in Object-Oriented Programming, allowing you to control the visibility of class properties and methods. In this video, you'll learn about the different access modifiers in TypeScript
+
+### Access Modifier
+
+```bash
+  class BankAccount {
+    public readonly id: number;
+    public name: string;
+    // private _balance: number;
+    protected _balance: number;
+
+    // in private property we use _ before property name
+    because of naming convention
+    // But there is an problem of using private property, if
+    we extends this class into another class we can not
+    access private property, at that time we should use
+    protected instead of private, it can not accessible in
+    intances but can accessible inside the extended class.
+
+    constructor(id: number, name: string, balance: number) {
+      this.id = id;
+      this.name = name;
+      this._balance = balance;
+    }
+
+    depositMoney(amount: number) {
+      this._balance += amount;
+    }
+    getBalance() {
+      return this._balance;
+    }
+  }
+
+  class StudentAccount extends BankAccount {
+    test() {
+      this._balance = 102;
+    }
+  }
+
+  const AktherHosen = new BankAccount(101, "Mr. Akther", 20);
+
+  // we can modify everything, but it's not fruitfull. so, we
+  need to stop this
+
+  // AktherHosen.balance=0
+
+  // if we use private property we can't access to update
+  outside the class.
+
+  AktherHosen.depositMoney(200);
+  const newBalance = AktherHosen.getBalance();
+  console.log(AktherHosen);
+  console.log(newBalance);
+
+```
