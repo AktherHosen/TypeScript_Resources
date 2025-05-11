@@ -473,9 +473,7 @@ This guide demonstrates TypeScript concepts like:
 
 Classes serve as blueprints for creating objects, which are instances that encapsulate both state and behavior. You'll learn how to define classes with properties and methods, create objects from them, and understand why this pattern is crucial for building scalable and maintainable applications.
 
-## Installation
-
-Install my-project with npm
+### Class & Object Examples
 
 ```bash
 {
