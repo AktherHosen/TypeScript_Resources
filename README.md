@@ -517,9 +517,7 @@ Classes serve as blueprints for creating objects, which are instances that encap
 
 Continuing our exploration of Object-Oriented Programming, we will let talk about inheritance, one of the most powerful tools for code reuse. Inheritance allows a class to inherit properties and methods from another class, creating a parent-child relationship.
 
-## Installation
-
-Install my-project with npm
+### Inheritence
 
 ```bash
 {
