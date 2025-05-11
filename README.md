@@ -512,3 +512,66 @@ Classes serve as blueprints for creating objects, which are instances that encap
 }
 
 ```
+
+## Inheritence
+
+Continuing our exploration of Object-Oriented Programming, we will let talk about inheritance, one of the most powerful tools for code reuse. Inheritance allows a class to inherit properties and methods from another class, creating a parent-child relationship.
+
+## Installation
+
+Install my-project with npm
+
+```bash
+{
+   we see common property and method in both class, so we can
+   combined both in single class
+   In child i have to call super with parameter to pass
+
+  class Person {
+    name: string;
+    age: number;
+    address: string;
+    constructor(name: string, age: number, address: string) {
+      this.name = name;
+      this.age = age;
+      this.address = address;
+    }
+
+    getSleep(numberOfHours: number) {
+      console.log(`${this.name} will sleep for
+      {numberOfHours`);
+    }
+  }
+
+  class Teacher extends Person {
+    designation: string;
+    constructor(
+      name: string,
+      age: number,
+      address: string,
+      designation: string
+    ) {
+      super(name, age, address);
+      this.designation = designation;
+    }
+
+    takeClass(numberOfClass: number) {
+      console.log(`${this.name} will sleep for {numberOfClass
+      `);
+    }
+  }
+
+  class Student extends Person {
+    constructor(name: string, age: number, address: string) {
+      super(name, age, address);
+    }
+  }
+
+  const student1 = new Student("Mr. Akther", 25,"Khowaznagar";
+  const teacher1 = new Teacher("Mr. Teacher", 40
+  "Canada""Professor");
+  console.log(student1);
+  console.log(teacher1);
+}
+
+```
